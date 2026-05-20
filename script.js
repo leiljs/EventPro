@@ -87,3 +87,66 @@ function showMessage(text, type) {
     setTimeout(() => msg.remove(), 5000);
   }
 }
+const bookingForm = document.querySelector('.booking-form form');
+const submitBtn = bookingForm.querySelector('.submit-btn');
+
+bookingForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(bookingForm);
+  const data = Object.fromEntries(formData.entries());
+
+  if (!data.name || !data.email || !data['event-type']) {
+    showMessage('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  try {
+    await addDoc(collection(db, 'bookings'), {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
+      eventType: data['event-type'],
+      eventDate: data['event-date'] || null,
+      guests: data.guests ? parseInt(data.guests) : null,
+      budget: data.budget || null,
+      message: data.message || null,
+      submittedAt: serverTimestamp()
+    });
+
+    await Promise.all([
+      // Email to team
+      emailjs.send('service_m29wau1', 'template_eezi1cf', {
+        from_name:  data.name,
+        from_email: data.email,
+        phone:      data.phone      || 'Not provided',
+        event_type: data['event-type'],
+        event_date: data['event-date'] || 'Not specified',
+        guests:     data.guests     || 'Not specified',
+        budget:     data.budget     || 'Not specified',
+        message:    data.message    || 'No additional details'
+      }),
+      // Confirmation email to customer
+      emailjs.send('service_m29wau1', 'template_customer_confirm', {
+        to_name:    data.name,
+        to_email:   data.email,
+        event_type: data['event-type'],
+        event_date: data['event-date'] || 'To be confirmed',
+        guests:     data.guests        || 'Not specified',
+        budget:     data.budget        || 'Not specified'
+      })
+    ]);
+
+    showMessage("Thank you! We'll be in touch within 24 hours.", 'success');
+    bookingForm.reset();
+  } catch (error) {
+    console.error('Error:', error);
+    showMessage('Something went wrong. Please try again.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }
+});
