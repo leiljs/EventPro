@@ -1,32 +1,30 @@
-//script.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAuwHmkoeBqkEb4uCPgFzZJqBz8a1JESwM",
-  authDomain: "event-man-cac3a.firebaseapp.com",
-  projectId: "event-man-cac3a",
-  storageBucket: "event-man-cac3a.firebasestorage.app",
-  messagingSenderId: "1047043940345",
-  appId: "1:1047043940345:web:a152fbcfc66a17a065a728"
-};
+    apiKey: "AIzaSyAuwHmkoeBqkEb4uCPgFzZJqBz8a1JESwM",
+    authDomain: "event-man-cac3a.firebaseapp.com",
+    projectId: "event-man-cac3a",
+    storageBucket: "event-man-cac3a.firebasestorage.app",
+    messagingSenderId: "1047043940345",
+    appId: "1:1047043940345:web:a152fbcfc66a17a065a728",
+    measurementId: "G-7LNY6K6XF2"
+  };
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// Mobile menu toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-// Smooth scrolling
+
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -38,10 +36,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-document.querySelectorAll('.service-card').forEach(card => {
-  observer.observe(card);
-});
-
+// Portfolio filtering
 const filterButtons = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -64,8 +59,80 @@ filterButtons.forEach(button => {
   });
 });
 
+// Saving to firestore
+const bookingForm = document.querySelector('.booking-form form');
+const submitBtn = bookingForm.querySelector('.submit-btn');
+
+bookingForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(bookingForm);
+  const data = Object.fromEntries(formData.entries());
+
+  // Basic validation
+  if (!data.name || !data.email || !data['event-type']) {
+    showMessage('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  // Disable button while saving
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  try {
+    await addDoc(collection(db, 'bookings'), {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
+      eventType: data['event-type'],
+      eventDate: data['event-date'] || null,
+      guests: data.guests ? parseInt(data.guests) : null,
+      budget: data.budget || null,
+      message: data.message || null,
+      submittedAt: serverTimestamp()
+    });
+
+    // Send email notification to the team via EmailJS
+    await emailjs.send(
+      'service_m29wau1',  
+      'template_eezi1cf',
+      {
+        from_name:  data.name,
+        from_email: data.email,
+        phone:      data.phone      || 'Not provided',
+        event_type: data['event-type'],
+        event_date: data['event-date'] || 'Not specified',
+        guests:     data.guests     || 'Not specified',
+        budget:     data.budget     || 'Not specified',
+        message:    data.message    || 'No additional details'
+      }
+    );
+    await emailjs.send(
+  'service_m29wau1',
+  'template_9pnavcs',   
+  {
+    to_name:    data.name,
+    to_email:   data.email,
+    event_type: data['event-type'],
+    event_date: data['event-date'] || 'To be confirmed',
+    guests:     data.guests        || 'Not specified',
+    budget:     data.budget        || 'Not specified',
+  }
+);
+
+    showMessage('Thank you! We\'ll be in touch within 24 hours.', 'success');
+    bookingForm.reset();
+  } catch (error) {
+    console.error('Error:', error);
+    showMessage('Something went wrong. Please try again.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }
+});
+
+// Simple inline feedback message (no alert())
 function showMessage(text, type) {
-  const bookingForm = document.querySelector('.booking-form form');
   const existing = bookingForm.querySelector('.form-message');
   if (existing) existing.remove();
 
@@ -87,74 +154,29 @@ function showMessage(text, type) {
     setTimeout(() => msg.remove(), 5000);
   }
 }
-const bookingForm = document.querySelector('.booking-form form');
-const submitBtn = bookingForm.querySelector('.submit-btn');
+// ─────────────────────────────────────────────────────────────────────────────
 
-bookingForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Intersection observer for card animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  const formData = new FormData(bookingForm);
-  const data = Object.fromEntries(formData.entries());
+document.querySelectorAll('.service-card, .testimonial-card').forEach(card => {
+  observer.observe(card);
+});
 
-  if (!data.name || !data.email || !data['event-type']) {
-    showMessage('Please fill in all required fields.', 'error');
-    return;
+// Scroll effect on header
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 100) {
+    header.style.background = 'rgba(44, 62, 80, 0.95)';
+    header.style.backdropFilter = 'blur(10px)';
+  } else {
+    header.style.background = '#2c3e50';
+    header.style.backdropFilter = 'none';
   }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-
-  try {
-    await addDoc(collection(db, 'bookings'), {
-      name: data.name,
-      email: data.email,
-      phone: data.phone || null,
-      eventType: data['event-type'],
-      eventDate: data['event-date'] || null,
-      guests: data.guests ? parseInt(data.guests) : null,
-      budget: data.budget || null,
-      message: data.message || null,
-      submittedAt: serverTimestamp()
-    });
-
-    await Promise.all([
-      // Email to team
-      emailjs.send('service_m29wau1', 'template_eezi1cf', {
-        from_name:  data.name,
-        from_email: data.email,
-        phone:      data.phone      || 'Not provided',
-        event_type: data['event-type'],
-        event_date: data['event-date'] || 'Not specified',
-        guests:     data.guests     || 'Not specified',
-        budget:     data.budget     || 'Not specified',
-        message:    data.message    || 'No additional details'
-      }),
-      // Confirmation email to customer
-      emailjs.send('service_m29wau1', 'template_customer_confirm', {
-        to_name:    data.name,
-        to_email:   data.email,
-        event_type: data['event-type'],
-        event_date: data['event-date'] || 'To be confirmed',
-        guests:     data.guests        || 'Not specified',
-        budget:     data.budget        || 'Not specified'
-      })
-    ]);
-
-    showMessage("Thank you! We'll be in touch within 24 hours.", 'success');
-    bookingForm.reset();
-  } catch (error) {
-    console.error('Error:', error);
-    showMessage('Something went wrong. Please try again.', 'error');
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send Message';
-  }
-  window.addEventListener('scroll', () => { const header = document.querySelector('header'); 
-    if (window.scrollY > 100) 
-      { header.style.background = 'rgba(44, 62, 80, 0.95)'; 
-        header.style.backdropFilter = 'blur(10px)'; 
-      } else { header.style.background = '#2c3e50'; header.style.backdropFilter = 'none'; 
-
-      }
-     }); 
 });
