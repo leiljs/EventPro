@@ -149,4 +149,12 @@ bookingForm.addEventListener('submit', async (e) => {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send Message';
   }
+  window.addEventListener('scroll', () => { const header = document.querySelector('header'); 
+    if (window.scrollY > 100) 
+      { header.style.background = 'rgba(44, 62, 80, 0.95)'; 
+        header.style.backdropFilter = 'blur(10px)'; 
+      } else { header.style.background = '#2c3e50'; header.style.backdropFilter = 'none'; 
+
+      }
+     }); 
 });
