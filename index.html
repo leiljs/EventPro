@@ -1,206 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EventPro</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>EventPro - Professional Event Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init('Ugcu_35MTaROXPcOg');
+    </script>
+    <style>
+
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">EventPro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-  <!-- NAVIGATION (C) -->
-<header>
-  <nav class="container">
-    <div class="logo">EventPro</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-  </nav>
-</header>
-  <!-- HERO / HOME (NO) -->
-<section class="hero" id="home"> 
-  
-  <div class="hero-content">
-     <h1>Creating Unforgettable Events</h1>
-      <p>From intimate gatherings to grand celebrations, we bring your vision to life with elegance and precision.</p>
-       <a href="#contact" class="cta-button">Book a Free Consultation</a> 
-      </div> 
-    </section> 
-  <!-- SERVICES (NA) -->
-   <section class="services" id="services">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Services</h2>
-      <p>We offer a wide range of event planning services tailored to your needs.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-ring"></i></div>
-        <h3>Weddings</h3>
-        <p>Your perfect day, planned to every detail with love and care.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-briefcase"></i></div>
-        <h3>Corporate Events</h3>
-        <p>Professional events that leave a lasting impression on your team and clients.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-birthday-cake"></i></div>
-        <h3>Private Parties</h3>
-        <p>Birthdays, anniversaries, and celebrations of all kinds.</p>
-      </div>
-    </div>
-  </div>
-</section>s
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Creating Unforgettable Events</h1>
+            <p>From intimate gatherings to grand celebrations, we bring your vision to life with professional event management services that exceed expectations.</p>
+            <a href="#contact" class="cta-button">Get Free Quote</a>
+        </div>
+    </section>
 
-  <!-- PORTFOLIO (NA + NO) -->
-   <section class="portfolio" id="portfolio">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Portfolio</h2>
-      <p>A glimpse of the events we have brought to life.</p>
-    </div>
-    <div class="portfolio-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="wedding">Weddings</button>
-      <button class="filter-btn" data-filter="corporate">Corporate</button>
-      <button class="filter-btn" data-filter="party">Parties</button>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-item" data-category="wedding">
-        <img src="" alt="Wedding Event" />
-        <div class="portfolio-overlay">
-          <h3>Elegant Wedding</h3>
-          <p>A beautiful ceremony by the sea</p>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>We offer comprehensive event management solutions to make your special occasions memorable and stress-free</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Wedding Planning</h3>
+                    <p>Complete wedding planning services from venue selection to day-of coordination. We handle every detail to make your special day perfect.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional corporate event management including conferences, seminars, product launches, and team building activities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Private Parties</h3>
+                    <p>Birthday parties, anniversaries, and private celebrations planned to perfection with attention to every personal detail.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Entertainment Events</h3>
+                    <p>Concerts, festivals, and entertainment events with full production management and technical coordination.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Catering Services</h3>
+                    <p>Premium catering solutions with diverse menu options, dietary accommodations, and professional service staff.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Event Photography</h3>
+                    <p>Professional photography and videography services to capture all the precious moments of your special event.</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="portfolio-item" data-category="corporate">
-        <img src="" alt="Corporate Event" />
-        <div class="portfolio-overlay">
-          <h3>Tech Summit 2024</h3>
-          <p>Annual corporate conference</p>
-        </div>
-      </div>
-      <div class="portfolio-item" data-category="party">
-        <img src="" alt="Private Party" />
-        <div class="portfolio-overlay">
-          <h3>Birthday Bash</h3>
-          <p>A night to remember</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-  <!-- TESTIMONIALS (C) -->
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="section-header">
-      <h2>What Our Clients Say</h2>
-      <p>Real stories from people whose events we made unforgettable.</p>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-rating">★★★★★</div>
-        <p class="testimonial-text">"They turned our wedding vision into absolute magic. Every detail was perfect."</p>
-        <p class="testimonial-author">— Sarah & Mark</p>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-rating">★★★★★</div>
-        <p class="testimonial-text">"Our company gala was a massive success thanks to their flawless execution."</p>
-        <p class="testimonial-author">— Rami K., CEO</p>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-rating">★★★★★</div>
-        <p class="testimonial-text">"From the flowers to the food, everything exceeded our expectations."</p>
-        <p class="testimonial-author">— Lina M.</p>
-      </div>
-    </div>
-  </div>
-</section>
-  <!-- CONTACT FORM (L) -->
-   <section class="contact" id="contact">
-  <div class="container">
-    <div class="section-header">
-      <h2>Book a Free Consultation</h2>
-      <p>Fill in your details and we'll get back to you within 24 hours.</p>
-    </div>
-    <div class="contact-content">
-      <div class="contact-info">
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <span>+961 XX XXX XXX</span>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Portfolio</h2>
+                <p>Take a look at some of our recent successful events and celebrations</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="weddings">Weddings</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="parties">Private Parties</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="weddings">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Wedding">
+                    <div class="portfolio-overlay">
+                        <h3>Elegant Garden Wedding</h3>
+                        <p>A beautiful outdoor wedding celebration with 200 guests</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="corporate">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Corporate Conference">
+                    <div class="portfolio-overlay">
+                        <h3>Annual Corporate Conference</h3>
+                        <p>3-day corporate event with international speakers</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="parties">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Birthday Party">
+                    <div class="portfolio-overlay">
+                        <h3>50th Birthday Celebration</h3>
+                        <p>Themed birthday party with custom decorations</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="weddings">
+                    <img src="https://images.unsplash.com/photo-1739295193565-a9137fd50451?q=80&w=838&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Beach Wedding">
+                    <div class="portfolio-overlay">
+                        <h3>Romantic Beach Wedding</h3>
+                        <p>Intimate beachfront ceremony at sunset</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="corporate">
+                    <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1464&q=80" alt="Product Launch">
+                    <div class="portfolio-overlay">
+                        <h3>Product Launch Event</h3>
+                        <p>High-tech product launch with interactive displays</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="parties">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Anniversary Party">
+                    <div class="portfolio-overlay">
+                        <h3>Golden Anniversary</h3>
+                        <p>Elegant 50th anniversary celebration</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>info@eventpro.com</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Beirut, Lebanon</span>
-        </div>
-      </div>
-      <div class="booking-form">
-        <form>
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="Your full name" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="+961 XX XXX XXX" />
-          </div>
-          <div class="form-group">
-            <label for="event-type">Event Type *</label>
-            <select id="event-type" name="event-type">
-              <option value="">Select event type</option>
-              <option value="wedding">Wedding</option>
-              <option value="corporate">Corporate Event</option>
-              <option value="birthday">Birthday Party</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <!-- DATE PICKER -->
-           <div class="form-group">
-              <label for="event-date">Event Date</label>
-              <input type="date" id="event-date" name="event-date" />
-          </div>
-          <div class="form-group">
-            <label for="guests">Number of Guests</label>
-            <input type="number" id="guests" name="guests" placeholder="Estimated guest count" />
-          </div>
-          <div class="form-group">
-            <label for="budget">Budget Range</label>
-            <select id="budget" name="budget">
-              <option value="">Select budget range</option>
-              <option value="under5k">Under $5,000</option>
-              <option value="5k-10k">$5,000 - $10,000</option>
-              <option value="10k-20k">$10,000 - $20,000</option>
-              <option value="above20k">Above $20,000</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Additional Details</label>
-            <textarea id="message" name="message" placeholder="Tell us more about your event..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="module" src="script.js"></script>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Don't just take our word for it - hear from our satisfied clients</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"EventPro made our wedding day absolutely perfect! They handled every detail with such professionalism and care. We couldn't have asked for a better team."</p>
+                    <div class="testimonial-author">Sarah & Michael Johnson</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Our corporate conference was a huge success thanks to EventPro. They managed everything flawlessly and our attendees were impressed with the organization."</p>
+                    <div class="testimonial-author">David Chen, Tech Solutions Inc.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Amazing team! They turned my 50th birthday party into an unforgettable celebration. The attention to detail was incredible."</p>
+                    <div class="testimonial-author">Lisa Rodriguez</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to plan your next event? Contact us for a free consultation</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Event Street, City Center<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@eventpro.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat - Sun: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <h3>Book a Consultation</h3>
+                    <form autocomplete="off">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Event Type *</label>
+                            <select id="event-type" name="event-type" required>
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Preferred Event Date</label>
+                            <input type="date" id="event-date" name="event-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Expected Number of Guests</label>
+                            <input type="number" id="guests" name="guests" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select Budget Range</option>
+                                <option value="5000-10000">$5,000 - $10,000</option>
+                                <option value="10000-25000">$10,000 - $25,000</option>
+                                <option value="25000-50000">$25,000 - $50,000</option>
+                                <option value="50000+">$50,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Additional Details</label>
+                            <textarea id="message" name="message" placeholder="Tell us more about your event vision..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventPro</h3>
+                    <p>Creating unforgettable moments through exceptional event management services. Your vision, our expertise.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#home" style="color: white; text-decoration: none;">Home</a></li>
+                        <li><a href="#services" style="color: white; text-decoration: none;">Services</a></li>
+                        <li><a href="#portfolio" style="color: white; text-decoration: none;">Portfolio</a></li>
+                        <li><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul style="list-style: none;">
+                        <li>Wedding Planning</li>
+                        <li>Corporate Events</li>
+                        <li>Private Parties</li>
+                        <li>Entertainment Events</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #34495e; padding-top: 20px; margin-top: 30px;">
+                <p>&copy; 2025 EventPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>
+
