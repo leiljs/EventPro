@@ -63,3 +63,27 @@ filterButtons.forEach(button => {
     });
   });
 });
+
+function showMessage(text, type) {
+  const bookingForm = document.querySelector('.booking-form form');
+  const existing = bookingForm.querySelector('.form-message');
+  if (existing) existing.remove();
+
+  const msg = document.createElement('p');
+  msg.className = 'form-message';
+  msg.textContent = text;
+  msg.style.cssText = `
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
+    color: ${type === 'success' ? '#155724' : '#721c24'};
+    border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
+  `;
+  bookingForm.appendChild(msg);
+
+  if (type === 'success') {
+    setTimeout(() => msg.remove(), 5000);
+  }
+}
