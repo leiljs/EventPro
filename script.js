@@ -1,4 +1,18 @@
 //script.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAuwHmkoeBqkEb4uCPgFzZJqBz8a1JESwM",
+  authDomain: "event-man-cac3a.firebaseapp.com",
+  projectId: "event-man-cac3a",
+  storageBucket: "event-man-cac3a.firebasestorage.app",
+  messagingSenderId: "1047043940345",
+  appId: "1:1047043940345:web:a152fbcfc66a17a065a728"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
